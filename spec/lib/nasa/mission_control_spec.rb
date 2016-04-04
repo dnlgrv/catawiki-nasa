@@ -16,8 +16,8 @@ END
 
   describe "#run_mission" do
     it "has the expected output" do
-    expected_output = "1 3 N\n5 1 E"
-    expect(subject.run_mission).to eq(expected_output)
+      expected_output = "1 3 N\n5 1 E"
+      expect(subject.run_mission).to eq(expected_output)
     end
   end
 end
