@@ -15,14 +15,14 @@ class NASA::Rover
     @heading = HEADINGS[heading]
   end
 
-  def command(input)
+  def command(input, boundary = nil)
     case input
     when "L"
       rotate_left_command
     when "R"
       rotate_right_command
     when "M"
-      move_command
+      move_command(boundary)
     end
   end
 
@@ -32,7 +32,27 @@ class NASA::Rover
 
   private
 
-  def move_command
+  def move_command(boundary = nil)
+    if boundary
+      move_command_with_boundary(boundary)
+    else
+      move_command_without_boundary
+    end
+  end
+
+  def move_command_with_boundary(boundary)
+    move_command_without_boundary
+
+    if @position.x > boundary[:width]
+      @position.x = boundary[:width]
+    end
+
+    if @position.y > boundary[:height]
+      @position.y = boundary[:height]
+    end
+  end
+
+  def move_command_without_boundary
     case @heading
     when :north
       @position.y = @position.y + 1

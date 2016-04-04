@@ -120,6 +120,19 @@ RSpec.describe NASA::Rover do
     context "when M" do
       let(:command) { "M" }
 
+      context "when provided with a boundary" do
+        let(:boundary) { { width: 2, height: 2 } }
+
+        it "doesn't move out of the boundary" do
+          subject.heading = :north
+          subject.position.y = 2
+
+          expect {
+            subject.command(command, boundary)
+          }.not_to change { subject.position.y }
+        end
+      end
+
       context "when facing North" do
         before do
           subject.heading = :north
