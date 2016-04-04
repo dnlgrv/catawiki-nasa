@@ -21,10 +21,25 @@ class NASA::Rover
       rotate_left_command
     when "R"
       rotate_right_command
+    when "M"
+      move_command
     end
   end
 
   private
+
+  def move_command
+    case @heading
+    when :north
+      @position.y = @position.y + 1
+    when :south
+      @position.y = @position.y - 1
+    when :east
+      @position.x = @position.x + 1
+    when :west
+      @position.x = @position.x - 1
+    end
+  end
 
   def rotate_left_command
     @heading = case @heading
@@ -45,7 +60,7 @@ class NASA::Rover
   end
 
   class Position
-    attr_reader :x, :y
+    attr_accessor :x, :y
 
     def initialize(x, y)
       @x = x

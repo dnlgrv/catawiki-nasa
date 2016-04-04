@@ -116,5 +116,57 @@ RSpec.describe NASA::Rover do
         end
       end
     end
+
+    context "when M" do
+      let(:command) { "M" }
+
+      context "when facing North" do
+        before do
+          subject.heading = :north
+        end
+
+        it "moves the Rover North" do
+          expect {
+            subject.command(command)
+          }.to change { subject.position.y }.by(+1)
+        end
+      end
+
+      context "when facing South" do
+        before do
+          subject.heading = :south
+        end
+
+        it "moves the Rover South" do
+          expect {
+            subject.command(command)
+          }.to change { subject.position.y }.by(-1)
+        end
+      end
+
+      context "when facing East" do
+        before do
+          subject.heading = :east
+        end
+
+        it "moves the Rover East" do
+          expect {
+            subject.command(command)
+          }.to change { subject.position.x }.by(+1)
+        end
+      end
+
+      context "when facing West" do
+        before do
+          subject.heading = :west
+        end
+
+        it "moves the Rover West" do
+          expect {
+            subject.command(command)
+          }.to change { subject.position.x }.by(-1)
+        end
+      end
+    end
   end
 end
