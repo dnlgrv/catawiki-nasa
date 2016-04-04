@@ -37,11 +37,11 @@ class NASA::Rover
     when :north
       @position.y = @position.y + 1
     when :south
-      @position.y = @position.y - 1
+      @position.y = @position.y - 1 if @position.y > 0
     when :east
       @position.x = @position.x + 1
     when :west
-      @position.x = @position.x - 1
+      @position.x = @position.x - 1 if @position.x > 0
     end
   end
 

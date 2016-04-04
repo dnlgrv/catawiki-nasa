@@ -142,6 +142,14 @@ RSpec.describe NASA::Rover do
             subject.command(command)
           }.to change { subject.position.y }.by(-1)
         end
+
+        it "doesn't move to negative coordinates" do
+          subject.position.y = 0
+
+          expect {
+            subject.command(command)
+          }.not_to change { subject.position.y }
+        end
       end
 
       context "when facing East" do
@@ -165,6 +173,14 @@ RSpec.describe NASA::Rover do
           expect {
             subject.command(command)
           }.to change { subject.position.x }.by(-1)
+        end
+
+        it "doesn't move to negative coordinates" do
+          subject.position.x = 0
+
+          expect {
+            subject.command(command)
+          }.not_to change { subject.position.x }
         end
       end
     end
