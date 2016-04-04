@@ -14,6 +14,12 @@ END
     described_class.new(mission_input)
   end
 
+  describe "#intialize" do
+    it "sets the plateau size" do
+      expect(subject.plateau).to eq(width: 5, height: 5)
+    end
+  end
+
   describe "#run_mission" do
     it "has the expected output" do
       expected_output = "1 3 N\n5 1 E"
