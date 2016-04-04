@@ -169,4 +169,14 @@ RSpec.describe NASA::Rover do
       end
     end
   end
+
+  describe "#report_location" do
+    it "returns the current position and heading of the Rover" do
+      subject.heading = :west
+      subject.position.x = 6
+      subject.position.y = 3
+
+      expect(subject.report_location).to eq("6 3 W")
+    end
+  end
 end

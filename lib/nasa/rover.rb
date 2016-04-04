@@ -26,6 +26,10 @@ class NASA::Rover
     end
   end
 
+  def report_location
+    [@position.x, @position.y, HEADINGS.key(@heading)].join(" ")
+  end
+
   private
 
   def move_command
