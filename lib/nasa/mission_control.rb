@@ -1,8 +1,4 @@
 class NASA::MissionControl
-  # I'm storing the plateau width/height but the assignment didn't mention what
-  # to do with the values. I'd assume to make sure that the rovers don't move
-  # over the edge, but the test case provided doesn't cover that scenario.
-
   attr_accessor :plateau
 
   def initialize(mission)
@@ -19,7 +15,7 @@ class NASA::MissionControl
 
       rover_input = mission_command.last.split(//)
       rover_input.each do |input|
-        rover.command(input)
+        rover.command(input, @plateau)
       end
 
       rover.report_location
