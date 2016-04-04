@@ -19,6 +19,8 @@ class NASA::Rover
     case input
     when "L"
       rotate_left_command
+    when "R"
+      rotate_right_command
     end
   end
 
@@ -26,14 +28,19 @@ class NASA::Rover
 
   def rotate_left_command
     @heading = case @heading
-               when :north
-                 :west
-               when :south
-                 :east
-               when :east
-                 :north
-               when :west
-                 :south
+               when :north then :west
+               when :south then :east
+               when :east  then :north
+               when :west  then :south
+               end
+  end
+
+  def rotate_right_command
+    @heading = case @heading
+               when :north then :east
+               when :south then :west
+               when :east  then :south
+               when :west  then :north
                end
   end
 

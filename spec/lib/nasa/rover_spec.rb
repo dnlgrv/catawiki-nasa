@@ -68,5 +68,53 @@ RSpec.describe NASA::Rover do
         end
       end
     end
+
+    context "when R" do
+      let(:command) { "R" }
+
+      context "when the Rover is facing North" do
+        before do
+          subject.heading = :north
+          subject.command(command)
+        end
+
+        it "rotates the Rover to face East" do
+          expect(subject.heading).to eq(:east)
+        end
+      end
+
+      context "when the Rover is facing South" do
+        before do
+          subject.heading = :south
+          subject.command(command)
+        end
+
+        it "rotates the Rover to face West" do
+          expect(subject.heading).to eq(:west)
+        end
+      end
+
+      context "when the Rover is facing East" do
+        before do
+          subject.heading = :east
+          subject.command(command)
+        end
+
+        it "rotates the Rover to face South" do
+          expect(subject.heading).to eq(:south)
+        end
+      end
+
+      context "when the Rover is facing West" do
+        before do
+          subject.heading = :west
+          subject.command(command)
+        end
+
+        it "rotates the Rover to face North" do
+          expect(subject.heading).to eq(:north)
+        end
+      end
+    end
   end
 end
